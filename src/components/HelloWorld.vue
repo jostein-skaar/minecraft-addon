@@ -9,8 +9,8 @@ const count = ref(0);
 <template>
   <h1>{{ msg }}</h1>
 
-  <p>Forsøk 1: <a href="/aronsskinpakke.mcpack" download>Last ned pakke</a></p>
-  <p>Forsøk 2: <a href="/aronsskinpakke2.mcpack" download>Last ned pakke2</a></p>
+  <p>Forsøk 3: <a href="/pakke3.mcpack" target="_blank">Last ned pakke blank</a></p>
+  <p>Forsøk 4: <a href="/pakke3.mcpack" target="_blank" type="application/zip">Last ned pakke blank + type zip</a></p>
 </template>
 
 <style scoped></style>
