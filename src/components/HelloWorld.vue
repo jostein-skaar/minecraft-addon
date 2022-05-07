@@ -9,7 +9,7 @@ const count = ref(0);
 <template>
   <h1>{{ msg }}</h1>
 
-  <p>Forsøk 1: <a href="/AronsSkinpakke.mcpack" download>Last ned pakke</a></p>
+  <p>Forsøk 1: <a href="/aronsskinpakke.mcpack" download>Last ned pakke</a></p>
 </template>
 
 <style scoped></style>
