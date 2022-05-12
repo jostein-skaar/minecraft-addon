@@ -1,0 +1,7 @@
+{
+  "format_version": "1.17.20",
+  "jostein:tulleblokk": {
+    "textures": "tulleblokk",
+    "sound": "dirt"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "format_version": "1.17.20",
+  "minecraft:block": {
+    "description": {
+      "identifier": "jostein:tulleblokk"
+    },
+    "components": {
+      "minecraft:creative_category": {
+        "category": "construction"
+      },
+      "minecraft:destroy_time": 3,
+      "minecraft:explosion_resistance": 5,
+      "minecraft:friction": 0.6,
+      "minecraft:flammable": {
+        "flame_odds": 0,
+        "burn_odds": 0
+      },
+      "minecraft:map_color": "#FFFFFF",
+      "minecraft:block_light_absorption": 0.5,
+      "minecraft:block_light_emission": 0
+    }
+  }
+}

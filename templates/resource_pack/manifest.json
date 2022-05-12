@@ -1,0 +1,29 @@
+{
+  "format_version": 2,
+  "header": {
+    "description": "Josteins første ressurspakke",
+    "name": "Josteins ressurspakke",
+    "uuid": "bdc35ca4-121f-47dd-9a5c-5c01073aaabb",
+    "version": [1, 0, 0],
+    "min_engine_version": [1, 16, 0]
+  },
+  "modules": [
+    {
+      "description": "Josteins ressursmodul",
+      "type": "resources",
+      "uuid": "97d16732-30bb-4de4-8020-530903730b4c",
+      "version": [1, 0, 0]
+    }
+  ],
+  "dependencies": [
+    {
+      "uuid": "d74954cd-72ae-4be5-be13-8ce4b6ed1b85",
+      "version": [1, 0, 0]
+    }
+  ],
+  "metadata": {
+    "authors": ["josteinskaar"],
+    "license": "MIT",
+    "url": "https://www.fjaas.no"
+  }
+}

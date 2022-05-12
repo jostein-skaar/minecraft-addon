@@ -1,0 +1,15 @@
+{
+  "header": {
+    "name": "AronSkinpakke",
+    "uuid": "1a7c9ccf-e7fa-406d-89a8-2997de8967db",
+    "version": [2, 2, 0]
+  },
+  "modules": [
+    {
+      "type": "skin_pack",
+      "uuid": "b4e90e01-88af-4406-8b26-d1431207ce74",
+      "version": [2, 2, 0]
+    }
+  ],
+  "format_version": 1
+}

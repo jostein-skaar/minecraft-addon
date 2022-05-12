@@ -1,0 +1,24 @@
+{
+  "serialize_name": "AronSkinpakke",
+  "localization_name": "AronSkinpakke",
+  "skins": [
+    {
+      "localization_name": "Regnbue",
+      "geometry": "geometry.humanoid.custom",
+      "texture": "skin-regnbue.png",
+      "type": "free"
+    },
+    {
+      "localization_name": "Robot",
+      "geometry": "geometry.humanoid.custom",
+      "texture": "skin-robot.png",
+      "type": "free"
+    },
+    {
+      "localization_name": "Prikkete",
+      "geometry": "geometry.humanoid.custom",
+      "texture": "skin-prikkete.png",
+      "type": "free"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "format_version": 2,
+  "header": {
+    "description": "Josteins aller første behaviorpakke",
+    "name": "Joteins behaviorpakke",
+    "uuid": "d74954cd-72ae-4be5-be13-8ce4b6ed1b85",
+    "version": [1, 0, 0],
+    "min_engine_version": [1, 16, 0]
+  },
+  "modules": [
+    {
+      "description": "Josteins første behaviormodul",
+      "type": "data",
+      "uuid": "bd9a39e0-d3df-45a1-b4e1-34ed62f03525",
+      "version": [1, 0, 0]
+    }
+  ],
+  "dependencies": [
+    {
+      "uuid": "bdc35ca4-121f-47dd-9a5c-5c01073aaabb",
+      "version": [1, 0, 0]
+    }
+  ],
+  "metadata": {
+    "authors": ["josteinskaar"],
+    "license": "MIT",
+    "url": "https://www.fjaas.no"
+  }
+}

@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "directory-tree": "^3.2.2",
-    "jszip": "^3.9.1"
+    "jszip": "^3.9.1",
+    "uuid": "^8.3.2"
   }
 }
