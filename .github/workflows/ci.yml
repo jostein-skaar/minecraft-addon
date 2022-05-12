@@ -35,12 +35,12 @@ jobs:
         with:
           sok: '{VERSJON}'
           erstatt: '${{steps.tagstep.outputs.tag}}'
-          filer: 'dist/**/*.{js,html}'
+          filer: 'web/dist/**/*.{js,html}'
           dry-run: false
 
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: dist
+          publish_dir: ./web/dist
           publish_branch: www
           cname: minecraft.fjaas.no
