@@ -2,9 +2,9 @@ name: CI
 on:
   push:
     branches: [main]
-    paths-ignore:
-      - README.md
-      - artwork
+    paths:
+      - 'web/**'
+      - '!README.md'
 
 jobs:
   build:
