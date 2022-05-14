@@ -2,6 +2,8 @@ const dirTree = require('directory-tree');
 const JSZip = require('jszip');
 const fs = require('fs');
 
+// Use this file to pack multiple folders as mcpack files.
+
 const foldersToPack = [
   'C:/Users/jostein/Downloads/dev_packs/development_resource_packs/jostein_ressurspakke',
   'C:/Users/jostein/Downloads/dev_packs/development_behavior_packs/jostein_behaviorpakke',

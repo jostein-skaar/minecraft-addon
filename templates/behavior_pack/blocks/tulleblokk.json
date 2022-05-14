@@ -2,7 +2,9 @@
   "format_version": "1.17.20",
   "minecraft:block": {
     "description": {
-      "identifier": "jostein:tulleblokk"
+      "identifier": "jostein:tulleblokk",
+      "is_experimental": false,
+      "register_to_creative_menu": true
     },
     "components": {
       "minecraft:creative_category": {
