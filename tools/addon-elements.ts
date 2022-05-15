@@ -1,5 +1,6 @@
 import { Block, Blocks } from './types/blocks';
 import { CustomBlock } from './types/custom-block';
+import { FlipbookTexture } from './types/flipbook-texture';
 import { Manifest } from './types/manifest';
 import { TerrainTexture, Texture } from './types/terrain-texture';
 
@@ -76,19 +77,24 @@ export function createCustomBlock(name: string, lightAbsorption = 0.5, lightEmmi
   return customBlock;
 }
 
-export function createBlock(name: string, textures: string, sound = 'dirt'): Blocks {
+export function createBlock(nameSpace: string, name: string, name2: string, sound = 'dirt'): Blocks {
   const blocks: Blocks = {
     format_version,
   };
   const block: Block = {
-    textures,
+    textures: name,
     sound,
   };
-  blocks[name] = block;
+  const block2: Block = {
+    textures: name2,
+    sound,
+  };
+  blocks[`${nameSpace}${name}`] = block;
+  blocks[`${nameSpace}${name2}`] = block2;
   return blocks;
 }
 
-export function createTerrainTexture(name: string, resource_pack_name: string) {
+export function createTerrainTexture(resource_pack_name: string, name: string, name2: string) {
   const terrainTexture: TerrainTexture = {
     texture_name: 'atlas.terrain',
     resource_pack_name,
@@ -99,6 +105,23 @@ export function createTerrainTexture(name: string, resource_pack_name: string) {
   const texture: Texture = {
     textures: `textures/blocks/${name}`,
   };
+  const texture2: Texture = {
+    textures: `textures/blocks/${name2}`,
+  };
   terrainTexture.texture_data[name] = texture;
+  terrainTexture.texture_data[name2] = texture2;
   return terrainTexture;
+}
+
+export function createFlipbookTextures(name: string, ticks_per_frame: number, frames: number[] = []): FlipbookTexture[] {
+  const fts: FlipbookTexture[] = [];
+  const ft: FlipbookTexture = {
+    flipbook_texture: `textures/blocks/${name}`,
+    atlas_tile: `${name}`,
+    ticks_per_frame,
+    frames,
+    blend_frames: false,
+  };
+  fts.push(ft);
+  return fts;
 }

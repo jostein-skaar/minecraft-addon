@@ -1,14 +1,20 @@
 import fs from 'fs';
 import JSZip from 'jszip';
 import { v4 as uuidv4 } from 'uuid';
-import { createBlock as createBlocks, createCustomBlock, createManifest, createTerrainTexture } from './addon-elements.js';
+import {
+  createBlock as createBlocks,
+  createCustomBlock,
+  createFlipbookTextures,
+  createManifest,
+  createTerrainTexture,
+} from './addon-elements.js';
 import AdmZip from 'adm-zip';
 
 let debug = false;
 const packName = 'aronspakke';
 const namespace = 'aron:';
-const blockName = 'regnbue';
-const version = [1, 0, 0];
+
+const version = [1, 1, 0];
 const authors = ['Aron Skaar', 'Jostein Skaar'];
 const uuid_rp = 'e15572fd-51e6-4cd3-aecf-27154e76e86b';
 const uuid_rp_module = '516d58f9-478c-4b34-b3d4-f853dc8c046b';
@@ -18,14 +24,21 @@ const rpName = 'Arons pakke';
 const bpName = 'Arons pakke';
 const description = `Arons pakke. Versjon ${version.join('.')}`;
 
-const iconPath = 'D:/Kode/minecraft-addon/artwork/aron/pack_icon.png';
-const texturePath = 'D:/Kode/minecraft-addon/artwork/aron/regnbue.png';
+const iconPath = '../artwork/aron/pack_icon.png';
+const texturePath = '../artwork/aron/regnbue.png';
+const texturePath2 = '../artwork/aron/regnbue_anim.png';
 
 // RP
+const blockName = 'regnbue';
+const blockName2 = 'regnbue_anim';
 const rpManifest = createManifest(version, rpName, description, uuid_rp, uuid_rp_module, uuid_bp, 'resources', authors);
-const textEn = `tile.${namespace}${blockName}.name=Regnbueblokk`;
-const blocks = createBlocks(namespace + blockName, blockName);
-const terrainTexture = createTerrainTexture(blockName, rpName);
+const blocks = createBlocks(namespace, blockName, blockName2);
+const terrainTexture = createTerrainTexture(rpName, blockName, blockName2);
+
+const flipbookTextures = createFlipbookTextures('regnbue_anim', 5);
+
+let textEn = `tile.${namespace}${blockName}.name=Regnbueblokk`;
+textEn += `\r\ntile.${namespace}${blockName2}.name=Regnbueblokk animert`;
 
 const rpZip = new JSZip();
 rpZip.file('manifest.json', JSON.stringify(rpManifest, null, 2));
@@ -33,15 +46,19 @@ rpZip.file('blocks.json', JSON.stringify(blocks, null, 2));
 rpZip.file('pack_icon.png', fs.readFileSync(iconPath));
 rpZip.folder('texts')?.file('en_US.lang', textEn);
 rpZip.folder('textures')?.file('terrain_texture.json', JSON.stringify(terrainTexture, null, 2));
+rpZip.folder('textures')?.file('flipbook_textures.json', JSON.stringify(flipbookTextures, null, 2));
 rpZip.folder('textures')?.folder('blocks')?.file(`${blockName}.png`, fs.readFileSync(texturePath));
+rpZip.folder('textures')?.folder('blocks')?.file(`${blockName2}.png`, fs.readFileSync(texturePath2));
 
 // BP
 const bpManifest = createManifest(version, bpName, description, uuid_bp, uuid_bp_module, uuid_rp, 'data', authors);
 const customBlock = createCustomBlock(namespace + blockName, 0, 1);
+const customBlock2 = createCustomBlock(namespace + blockName2, 0, 1);
 const bpZip = new JSZip();
 bpZip.file('manifest.json', JSON.stringify(bpManifest, null, 2));
 bpZip.file('pack_icon.png', fs.readFileSync(iconPath));
 bpZip.folder('blocks')?.file(`${blockName}.json`, JSON.stringify(customBlock, null, 2));
+bpZip.folder('blocks')?.file(`${blockName2}.json`, JSON.stringify(customBlock2, null, 2));
 
 const rpZipFileName = `${packName}_rp.mcpack`;
 const bpZipFileName = `${packName}_bp.mcpack`;
@@ -61,8 +78,8 @@ addonZip
 
 if (debug) {
   // When developing, unzip to mojang dev folders.
-  // const mojangPath = 'C:/Users/joste/AppData/Local/Packages/Microsoft.MinecraftUWP_8wekyb3d8bbwe/LocalState/games/com.mojang/';
-  const mojangPath = 'C:/Users/jostein/AppData/Local/Packages/Microsoft.MinecraftUWP_8wekyb3d8bbwe/LocalState/games/com.mojang/';
+  const mojangPath = 'C:/Users/joste/AppData/Local/Packages/Microsoft.MinecraftUWP_8wekyb3d8bbwe/LocalState/games/com.mojang/';
+  // const mojangPath = 'C:/Users/jostein/AppData/Local/Packages/Microsoft.MinecraftUWP_8wekyb3d8bbwe/LocalState/games/com.mojang/';
 
   rpZip
     .generateNodeStream({ type: 'nodebuffer', streamFiles: true })
@@ -75,7 +92,7 @@ if (debug) {
     .on('finish', unzipBpToDev);
 
   function unzipRpToDev() {
-    const rpZipFullPath = 'C:/kode/minecraft-addon/tools/temp/' + rpZipFileName;
+    const rpZipFullPath = 'temp/' + rpZipFileName;
     const rpDevPath = `${mojangPath}development_resource_packs/${packName}_rp`;
     var rpAdmZip = new AdmZip(rpZipFullPath);
     rpAdmZip.extractAllTo(rpDevPath, true);
@@ -83,7 +100,7 @@ if (debug) {
   }
 
   function unzipBpToDev() {
-    const bpZipFullPath = 'C:/kode/minecraft-addon/tools/temp/' + bpZipFileName;
+    const bpZipFullPath = 'temp/' + bpZipFileName;
     const bpDevPath = `${mojangPath}development_behavior_packs/${packName}_bp`;
     var bpAdmZip = new AdmZip(bpZipFullPath);
     bpAdmZip.extractAllTo(bpDevPath, true);
