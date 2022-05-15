@@ -10,7 +10,7 @@ import {
 } from './addon-elements.js';
 import AdmZip from 'adm-zip';
 
-let debug = false;
+let debug = true;
 const packName = 'aronspakke';
 const namespace = 'aron:';
 
@@ -25,19 +25,19 @@ const bpName = 'Arons pakke';
 const description = `Arons pakke. Versjon ${version.join('.')}`;
 
 const iconPath = '../artwork/aron/pack_icon.png';
-const texturePath = '../artwork/aron/regnbue.png';
-const texturePath2 = '../artwork/aron/regnbue_anim.png';
+const texturePath = '../artwork/aron/regnbue_statisk.png';
+const texturePath2 = '../artwork/aron/regnbue.png';
 
 // RP
-const blockName = 'regnbue';
-const blockName2 = 'regnbue_anim';
+const blockName = 'regnbue_statisk';
+const blockName2 = 'regnbue';
 const rpManifest = createManifest(version, rpName, description, uuid_rp, uuid_rp_module, uuid_bp, 'resources', authors);
 const blocks = createBlocks(namespace, blockName, blockName2);
 const terrainTexture = createTerrainTexture(rpName, blockName, blockName2);
 
-const flipbookTextures = createFlipbookTextures('regnbue_anim', 5);
+const flipbookTextures = createFlipbookTextures(blockName2, 5);
 
-let textEn = `tile.${namespace}${blockName}.name=Regnbueblokk`;
+let textEn = `tile.${namespace}${blockName}.name=Regnbueblokk statisk`;
 textEn += `\r\ntile.${namespace}${blockName2}.name=Regnbueblokk animert`;
 
 const rpZip = new JSZip();
@@ -49,6 +49,10 @@ rpZip.folder('textures')?.file('terrain_texture.json', JSON.stringify(terrainTex
 rpZip.folder('textures')?.file('flipbook_textures.json', JSON.stringify(flipbookTextures, null, 2));
 rpZip.folder('textures')?.folder('blocks')?.file(`${blockName}.png`, fs.readFileSync(texturePath));
 rpZip.folder('textures')?.folder('blocks')?.file(`${blockName2}.png`, fs.readFileSync(texturePath2));
+rpZip.folder('textures')?.folder('entity')?.folder('cat')?.file(`white.png`, fs.readFileSync(`../artwork/aron/regnbuekatt.png`));
+rpZip.folder('textures')?.folder('entity')?.folder('cat')?.file(`blackcat.png`, fs.readFileSync(`../artwork/aron/regnbuekatt.png`));
+rpZip.folder('textures')?.folder('entity')?.folder('sheep')?.file(`sheep.png`, fs.readFileSync(`../artwork/aron/regnbuesau.png`));
+rpZip.folder('textures')?.folder('entity')?.folder('cow')?.file(`cow.png`, fs.readFileSync(`../artwork/aron/regnbuemal64x64.png`));
 
 // BP
 const bpManifest = createManifest(version, bpName, description, uuid_bp, uuid_bp_module, uuid_rp, 'data', authors);
@@ -78,8 +82,8 @@ addonZip
 
 if (debug) {
   // When developing, unzip to mojang dev folders.
-  const mojangPath = 'C:/Users/joste/AppData/Local/Packages/Microsoft.MinecraftUWP_8wekyb3d8bbwe/LocalState/games/com.mojang/';
-  // const mojangPath = 'C:/Users/jostein/AppData/Local/Packages/Microsoft.MinecraftUWP_8wekyb3d8bbwe/LocalState/games/com.mojang/';
+  // const mojangPath = 'C:/Users/joste/AppData/Local/Packages/Microsoft.MinecraftUWP_8wekyb3d8bbwe/LocalState/games/com.mojang/';
+  const mojangPath = 'C:/Users/jostein/AppData/Local/Packages/Microsoft.MinecraftUWP_8wekyb3d8bbwe/LocalState/games/com.mojang/';
 
   rpZip
     .generateNodeStream({ type: 'nodebuffer', streamFiles: true })
