@@ -14,12 +14,12 @@ let debug = false;
 const packName = 'aronspakke';
 const namespace = 'aron:';
 
-const version = [1, 1, 0];
+const version = [1, 2, 0];
 const authors = ['Aron Skaar', 'Jostein Skaar'];
-const uuid_rp = 'e15572fd-51e6-4cd3-aecf-27154e76e86b';
-const uuid_rp_module = '516d58f9-478c-4b34-b3d4-f853dc8c046b';
-const uuid_bp = '6fab7b31-6e6f-4ae7-af1b-e661b7be5325';
-const uuid_bp_module = '58364d81-48fc-4add-b5d1-d59317c2ee61';
+const uuid_rp = 'f8c6b399-c618-42a5-931e-5b6005957dfb';
+const uuid_rp_module = 'a1d20770-7b50-4108-8bcc-580d5738fa67';
+const uuid_bp = '9c4d0436-2643-4c66-b93e-36f3a0f31708';
+const uuid_bp_module = '8f2e5bc5-3fb1-4be7-a3f3-82d885f7f1aa';
 const rpName = 'Arons pakke';
 const bpName = 'Arons pakke';
 const description = `Arons pakke. Versjon ${version.join('.')}`;
@@ -67,7 +67,7 @@ const addonZip = new JSZip();
 addonZip.file(rpZipFileName, rpZip.generateNodeStream({ type: 'nodebuffer', streamFiles: true }));
 addonZip.file(bpZipFileName, bpZip.generateNodeStream({ type: 'nodebuffer', streamFiles: true }));
 
-const addonZipFileName = `temp/${packName}.mcaddon`;
+const addonZipFileName = `temp/${packName}_v${version.join('.')}.mcaddon`;
 
 addonZip
   .generateNodeStream({ type: 'nodebuffer', streamFiles: true })
