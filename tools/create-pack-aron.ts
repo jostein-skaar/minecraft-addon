@@ -14,7 +14,7 @@ let debug = true;
 const packName = 'aronspakke';
 const namespace = 'aron:';
 
-const version = [1, 2, 0];
+const version = [1, 3, 0];
 const authors = ['Aron Skaar', 'Jostein Skaar'];
 const uuid_rp = 'f8c6b399-c618-42a5-931e-5b6005957dfb';
 const uuid_rp_module = 'a1d20770-7b50-4108-8bcc-580d5738fa67';
